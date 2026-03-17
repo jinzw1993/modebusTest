@@ -1,0 +1,9 @@
+.\objects\modbus_pdu.o: src\protocol\modbus_pdu.c
+.\objects\modbus_pdu.o: src\protocol\modbus_pdu.h
+.\objects\modbus_pdu.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\modbus_pdu.o: inc\modbus_types.h
+.\objects\modbus_pdu.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\modbus_pdu.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\modbus_pdu.o: src\app\modbus_data.h
+.\objects\modbus_pdu.o: src\app\modbus_config.h
+.\objects\modbus_pdu.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

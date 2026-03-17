@@ -1,0 +1,344 @@
+Dependencies for Project 'modbusTest', Target 'ModbusSlave_AT32F423': (DO NOT MODIFY !)
+F (src\main.c)(0x69B8F283)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I inc -I src -I src\protocol -I src\hal -I src\app -I src\port -I Libraries\drivers\inc -I Libraries\cmsis\cm4\core_support -I Libraries\cmsis\cm4\device_support-I.\RTE\_ModbusSlave_AT32F423-ID:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DAT32F423KCU7_4 -DUSE_STDPERIPH_DRIVER -DAT32F423K8U7_4-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x57F606B8)
+I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x57F606B8)
+I (src\app/modbus_slave.h)(0x69B8C773)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
+I (D:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x57F606B8)
+I (inc\modbus_types.h)(0x69B8C499)
+I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x57F606B8)
+I (src\app/modbus_data.h)(0x69B8C61D)
+I (src\app/modbus_config.h)(0x69B8C499)
+I (src\hal/hal_uart.h)(0x69B8C50B)
+I (src\hal/hal_timer.h)(0x69B8C50B)
+F (src\protocol\modbus_rtu.c)(0x69B8C531)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I inc -I src -I src\protocol -I src\hal -I src\app -I src\port -I Libraries\drivers\inc -I Libraries\cmsis\cm4\core_support -I Libraries\cmsis\cm4\device_support-I.\RTE\_ModbusSlave_AT32F423-ID:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DAT32F423KCU7_4 -DUSE_STDPERIPH_DRIVER -DAT32F423K8U7_4-o .\objects\modbus_rtu.o --omf_browse .\objects\modbus_rtu.crf --depend .\objects\modbus_rtu.d)
+I (src\protocol\modbus_rtu.h)(0x69B8C6CA)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
+I (D:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x57F606B8)
+I (inc\modbus_types.h)(0x69B8C499)
+I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x57F606B8)
+I (src\protocol\modbus_crc.h)(0x69B8C4D4)
+I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x57F606B8)
+F (src\protocol\modbus_pdu.c)(0x69B8C588)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I inc -I src -I src\protocol -I src\hal -I src\app -I src\port -I Libraries\drivers\inc -I Libraries\cmsis\cm4\core_support -I Libraries\cmsis\cm4\device_support-I.\RTE\_ModbusSlave_AT32F423-ID:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DAT32F423KCU7_4 -DUSE_STDPERIPH_DRIVER -DAT32F423K8U7_4-o .\objects\modbus_pdu.o --omf_browse .\objects\modbus_pdu.crf --depend .\objects\modbus_pdu.d)
+I (src\protocol\modbus_pdu.h)(0x69B8C588)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
+I (inc\modbus_types.h)(0x69B8C499)
+I (D:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x57F606B8)
+I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x57F606B8)
+I (src\app\modbus_data.h)(0x69B8C61D)
+I (src\app\modbus_config.h)(0x69B8C499)
+I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x57F606B8)
+F (src\protocol\modbus_crc.c)(0x69B8C4D4)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I inc -I src -I src\protocol -I src\hal -I src\app -I src\port -I Libraries\drivers\inc -I Libraries\cmsis\cm4\core_support -I Libraries\cmsis\cm4\device_support-I.\RTE\_ModbusSlave_AT32F423-ID:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DAT32F423KCU7_4 -DUSE_STDPERIPH_DRIVER -DAT32F423K8U7_4-o .\objects\modbus_crc.o --omf_browse .\objects\modbus_crc.crf --depend .\objects\modbus_crc.d)
+I (src\protocol\modbus_crc.h)(0x69B8C4D4)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
+I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x57F606B8)
+F (src\hal\hal_uart.c)(0x69B8C50B)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I inc -I src -I src\protocol -I src\hal -I src\app -I src\port -I Libraries\drivers\inc -I Libraries\cmsis\cm4\core_support -I Libraries\cmsis\cm4\device_support-I.\RTE\_ModbusSlave_AT32F423-ID:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DAT32F423KCU7_4 -DUSE_STDPERIPH_DRIVER -DAT32F423K8U7_4-o .\objects\hal_uart.o --omf_browse .\objects\hal_uart.crf --depend .\objects\hal_uart.d)
+I (src\hal\hal_uart.h)(0x69B8C50B)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
+I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x57F606B8)
+F (src\hal\hal_timer.c)(0x69B8C50B)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I inc -I src -I src\protocol -I src\hal -I src\app -I src\port -I Libraries\drivers\inc -I Libraries\cmsis\cm4\core_support -I Libraries\cmsis\cm4\device_support-I.\RTE\_ModbusSlave_AT32F423-ID:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DAT32F423KCU7_4 -DUSE_STDPERIPH_DRIVER -DAT32F423K8U7_4-o .\objects\hal_timer.o --omf_browse .\objects\hal_timer.crf --depend .\objects\hal_timer.d)
+I (src\hal\hal_timer.h)(0x69B8C50B)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
+I (D:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x57F606B8)
+I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x57F606B8)
+F (src\app\modbus_slave.c)(0x69B8F246)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I inc -I src -I src\protocol -I src\hal -I src\app -I src\port -I Libraries\drivers\inc -I Libraries\cmsis\cm4\core_support -I Libraries\cmsis\cm4\device_support-I.\RTE\_ModbusSlave_AT32F423-ID:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DAT32F423KCU7_4 -DUSE_STDPERIPH_DRIVER -DAT32F423K8U7_4-o .\objects\modbus_slave.o --omf_browse .\objects\modbus_slave.crf --depend .\objects\modbus_slave.d)
+I (src\app\modbus_slave.h)(0x69B8C773)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
+I (D:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x57F606B8)
+I (inc\modbus_types.h)(0x69B8C499)
+I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x57F606B8)
+I (src\app\modbus_data.h)(0x69B8C61D)
+I (src\protocol\modbus_rtu.h)(0x69B8C6CA)
+I (src\protocol\modbus_pdu.h)(0x69B8C588)
+I (src\protocol\modbus_crc.h)(0x69B8C4D4)
+I (src\app\modbus_config.h)(0x69B8C499)
+I (src\app\../hal/hal_uart.h)(0x69B8C50B)
+I (src\app\../hal/hal_timer.h)(0x69B8C50B)
+I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x57F606B8)
+F (src\app\modbus_data.c)(0x69B8C62A)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I inc -I src -I src\protocol -I src\hal -I src\app -I src\port -I Libraries\drivers\inc -I Libraries\cmsis\cm4\core_support -I Libraries\cmsis\cm4\device_support-I.\RTE\_ModbusSlave_AT32F423-ID:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DAT32F423KCU7_4 -DUSE_STDPERIPH_DRIVER -DAT32F423K8U7_4-o .\objects\modbus_data.o --omf_browse .\objects\modbus_data.crf --depend .\objects\modbus_data.d)
+I (src\app\modbus_data.h)(0x69B8C61D)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
+I (D:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x57F606B8)
+I (inc\modbus_types.h)(0x69B8C499)
+I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x57F606B8)
+I (src\app\modbus_config.h)(0x69B8C499)
+I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x57F606B8)
+F (src\port\port_uart_at32.c)(0x69B8F403)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I inc -I src -I src\protocol -I src\hal -I src\app -I src\port -I Libraries\drivers\inc -I Libraries\cmsis\cm4\core_support -I Libraries\cmsis\cm4\device_support-I.\RTE\_ModbusSlave_AT32F423-ID:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DAT32F423KCU7_4 -DUSE_STDPERIPH_DRIVER -DAT32F423K8U7_4-o .\objects\port_uart_at32.o --omf_browse .\objects\port_uart_at32.crf --depend .\objects\port_uart_at32.d)
+I (src\port\../hal/hal_uart.h)(0x69B8C50B)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
+I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x57F606B8)
+I (Libraries\cmsis\cm4\device_support\at32f423.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\core_cm4.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_version.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_compiler.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_armcc.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\mpu_armv7.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\device_support\system_at32f423.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_def.h)(0x69B8F1EC)
+I (D:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include\at32f423_conf.h)(0x6923BC26)
+I (Libraries\drivers\inc\at32f423_crm.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_tmr.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_ertc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_gpio.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_i2c.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_usart.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_pwc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_can.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_adc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_dac.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_spi.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_dma.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_debug.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_flash.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_crc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_wwdt.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_wdt.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_exint.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_xmc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_acc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_misc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_scfg.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_usb.h)(0x69B8F1EC)
+I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x57F606B8)
+F (src\port\port_timer_at32.c)(0x69B8F3E4)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I inc -I src -I src\protocol -I src\hal -I src\app -I src\port -I Libraries\drivers\inc -I Libraries\cmsis\cm4\core_support -I Libraries\cmsis\cm4\device_support-I.\RTE\_ModbusSlave_AT32F423-ID:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DAT32F423KCU7_4 -DUSE_STDPERIPH_DRIVER -DAT32F423K8U7_4-o .\objects\port_timer_at32.o --omf_browse .\objects\port_timer_at32.crf --depend .\objects\port_timer_at32.d)
+I (src\port\../hal/hal_timer.h)(0x69B8C50B)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
+I (D:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x57F606B8)
+I (Libraries\cmsis\cm4\device_support\at32f423.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\core_cm4.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_version.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_compiler.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_armcc.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\mpu_armv7.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\device_support\system_at32f423.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_def.h)(0x69B8F1EC)
+I (D:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include\at32f423_conf.h)(0x6923BC26)
+I (Libraries\drivers\inc\at32f423_crm.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_tmr.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_ertc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_gpio.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_i2c.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_usart.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_pwc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_can.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_adc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_dac.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_spi.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_dma.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_debug.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_flash.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_crc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_wwdt.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_wdt.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_exint.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_xmc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_acc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_misc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_scfg.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_usb.h)(0x69B8F1EC)
+I (D:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x57F606B8)
+F (Libraries\cmsis\cm4\device_support\system_at32f423.c)(0x69B8F1EC)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I inc -I src -I src\protocol -I src\hal -I src\app -I src\port -I Libraries\drivers\inc -I Libraries\cmsis\cm4\core_support -I Libraries\cmsis\cm4\device_support-I.\RTE\_ModbusSlave_AT32F423-ID:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DAT32F423KCU7_4 -DUSE_STDPERIPH_DRIVER -DAT32F423K8U7_4-o .\objects\system_at32f423.o --omf_browse .\objects\system_at32f423.crf --depend .\objects\system_at32f423.d)
+I (Libraries\cmsis\cm4\device_support\at32f423.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\core_cm4.h)(0x69B8F1EC)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
+I (Libraries\cmsis\cm4\core_support\cmsis_version.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_compiler.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_armcc.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\mpu_armv7.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\device_support\system_at32f423.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_def.h)(0x69B8F1EC)
+I (D:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include\at32f423_conf.h)(0x6923BC26)
+I (Libraries\drivers\inc\at32f423_crm.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_tmr.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_ertc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_gpio.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_i2c.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_usart.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_pwc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_can.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_adc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_dac.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_spi.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_dma.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_debug.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_flash.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_crc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_wwdt.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_wdt.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_exint.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_xmc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_acc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_misc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_scfg.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_usb.h)(0x69B8F1EC)
+F (Libraries\drivers\src\at32f423_gpio.c)(0x69B8F1EC)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I inc -I src -I src\protocol -I src\hal -I src\app -I src\port -I Libraries\drivers\inc -I Libraries\cmsis\cm4\core_support -I Libraries\cmsis\cm4\device_support-I.\RTE\_ModbusSlave_AT32F423-ID:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DAT32F423KCU7_4 -DUSE_STDPERIPH_DRIVER -DAT32F423K8U7_4-o .\objects\at32f423_gpio.o --omf_browse .\objects\at32f423_gpio.crf --depend .\objects\at32f423_gpio.d)
+I (D:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include\at32f423_conf.h)(0x6923BC26)
+I (Libraries\drivers\inc\at32f423_crm.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\device_support\at32f423.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\core_cm4.h)(0x69B8F1EC)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
+I (Libraries\cmsis\cm4\core_support\cmsis_version.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_compiler.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_armcc.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\mpu_armv7.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\device_support\system_at32f423.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_def.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_tmr.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_ertc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_gpio.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_i2c.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_usart.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_pwc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_can.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_adc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_dac.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_spi.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_dma.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_debug.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_flash.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_crc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_wwdt.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_wdt.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_exint.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_xmc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_acc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_misc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_scfg.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_usb.h)(0x69B8F1EC)
+F (Libraries\drivers\src\at32f423_usart.c)(0x69B8F1EC)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I inc -I src -I src\protocol -I src\hal -I src\app -I src\port -I Libraries\drivers\inc -I Libraries\cmsis\cm4\core_support -I Libraries\cmsis\cm4\device_support-I.\RTE\_ModbusSlave_AT32F423-ID:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DAT32F423KCU7_4 -DUSE_STDPERIPH_DRIVER -DAT32F423K8U7_4-o .\objects\at32f423_usart.o --omf_browse .\objects\at32f423_usart.crf --depend .\objects\at32f423_usart.d)
+I (D:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include\at32f423_conf.h)(0x6923BC26)
+I (Libraries\drivers\inc\at32f423_crm.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\device_support\at32f423.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\core_cm4.h)(0x69B8F1EC)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
+I (Libraries\cmsis\cm4\core_support\cmsis_version.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_compiler.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_armcc.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\mpu_armv7.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\device_support\system_at32f423.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_def.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_tmr.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_ertc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_gpio.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_i2c.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_usart.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_pwc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_can.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_adc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_dac.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_spi.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_dma.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_debug.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_flash.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_crc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_wwdt.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_wdt.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_exint.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_xmc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_acc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_misc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_scfg.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_usb.h)(0x69B8F1EC)
+F (Libraries\drivers\src\at32f423_tmr.c)(0x69B8F1EC)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I inc -I src -I src\protocol -I src\hal -I src\app -I src\port -I Libraries\drivers\inc -I Libraries\cmsis\cm4\core_support -I Libraries\cmsis\cm4\device_support-I.\RTE\_ModbusSlave_AT32F423-ID:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DAT32F423KCU7_4 -DUSE_STDPERIPH_DRIVER -DAT32F423K8U7_4-o .\objects\at32f423_tmr.o --omf_browse .\objects\at32f423_tmr.crf --depend .\objects\at32f423_tmr.d)
+I (D:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include\at32f423_conf.h)(0x6923BC26)
+I (Libraries\drivers\inc\at32f423_crm.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\device_support\at32f423.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\core_cm4.h)(0x69B8F1EC)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
+I (Libraries\cmsis\cm4\core_support\cmsis_version.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_compiler.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_armcc.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\mpu_armv7.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\device_support\system_at32f423.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_def.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_tmr.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_ertc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_gpio.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_i2c.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_usart.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_pwc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_can.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_adc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_dac.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_spi.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_dma.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_debug.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_flash.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_crc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_wwdt.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_wdt.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_exint.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_xmc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_acc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_misc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_scfg.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_usb.h)(0x69B8F1EC)
+F (Libraries\drivers\src\at32f423_crm.c)(0x69B8F1EC)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I inc -I src -I src\protocol -I src\hal -I src\app -I src\port -I Libraries\drivers\inc -I Libraries\cmsis\cm4\core_support -I Libraries\cmsis\cm4\device_support-I.\RTE\_ModbusSlave_AT32F423-ID:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DAT32F423KCU7_4 -DUSE_STDPERIPH_DRIVER -DAT32F423K8U7_4-o .\objects\at32f423_crm.o --omf_browse .\objects\at32f423_crm.crf --depend .\objects\at32f423_crm.d)
+I (D:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include\at32f423_conf.h)(0x6923BC26)
+I (Libraries\drivers\inc\at32f423_crm.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\device_support\at32f423.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\core_cm4.h)(0x69B8F1EC)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
+I (Libraries\cmsis\cm4\core_support\cmsis_version.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_compiler.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_armcc.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\mpu_armv7.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\device_support\system_at32f423.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_def.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_tmr.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_ertc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_gpio.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_i2c.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_usart.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_pwc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_can.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_adc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_dac.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_spi.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_dma.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_debug.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_flash.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_crc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_wwdt.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_wdt.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_exint.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_xmc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_acc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_misc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_scfg.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_usb.h)(0x69B8F1EC)
+F (Libraries\drivers\src\at32f423_misc.c)(0x69B8F1EC)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I inc -I src -I src\protocol -I src\hal -I src\app -I src\port -I Libraries\drivers\inc -I Libraries\cmsis\cm4\core_support -I Libraries\cmsis\cm4\device_support-I.\RTE\_ModbusSlave_AT32F423-ID:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DAT32F423KCU7_4 -DUSE_STDPERIPH_DRIVER -DAT32F423K8U7_4-o .\objects\at32f423_misc.o --omf_browse .\objects\at32f423_misc.crf --depend .\objects\at32f423_misc.d)
+I (D:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include\at32f423_conf.h)(0x6923BC26)
+I (Libraries\drivers\inc\at32f423_crm.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\device_support\at32f423.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\core_cm4.h)(0x69B8F1EC)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
+I (Libraries\cmsis\cm4\core_support\cmsis_version.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_compiler.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\cmsis_armcc.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\core_support\mpu_armv7.h)(0x69B8F1EC)
+I (Libraries\cmsis\cm4\device_support\system_at32f423.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_def.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_tmr.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_ertc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_gpio.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_i2c.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_usart.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_pwc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_can.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_adc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_dac.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_spi.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_dma.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_debug.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_flash.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_crc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_wwdt.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_wdt.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_exint.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_xmc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_acc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_misc.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_scfg.h)(0x69B8F1EC)
+I (Libraries\drivers\inc\at32f423_usb.h)(0x69B8F1EC)
+F (Libraries\cmsis\cm4\device_support\startup\mdk\startup_at32f423.s)(0x69B8F1EC)(--cpu Cortex-M4.fp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_ModbusSlave_AT32F423-ID:\Keil_v5\ARM\PACK\ArteryTek\AT32F423_DFP\2.1.2\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 523" --pd "AT32F423KCU7_4 SETA 1"--list .\listings\startup_at32f423.lst --xref -o .\objects\startup_at32f423.o --depend .\objects\startup_at32f423.d)

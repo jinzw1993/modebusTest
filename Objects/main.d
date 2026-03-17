@@ -1,0 +1,12 @@
+.\objects\main.o: src\main.c
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\main.o: src\app/modbus_slave.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\main.o: inc\modbus_types.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\main.o: src\app/modbus_data.h
+.\objects\main.o: src\app/modbus_config.h
+.\objects\main.o: src\hal/hal_uart.h
+.\objects\main.o: src\hal/hal_timer.h

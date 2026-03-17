@@ -1,0 +1,21 @@
+--cpu=Cortex-M4.fp
+".\objects\main.o"
+".\objects\modbus_rtu.o"
+".\objects\modbus_pdu.o"
+".\objects\modbus_crc.o"
+".\objects\hal_uart.o"
+".\objects\hal_timer.o"
+".\objects\modbus_slave.o"
+".\objects\modbus_data.o"
+".\objects\port_uart_at32.o"
+".\objects\port_timer_at32.o"
+".\objects\system_at32f423.o"
+".\objects\at32f423_gpio.o"
+".\objects\at32f423_usart.o"
+".\objects\at32f423_tmr.o"
+".\objects\at32f423_crm.o"
+".\objects\at32f423_misc.o"
+".\objects\startup_at32f423.o"
+--library_type=microlib --ro-base 0x08000000 --entry 0x08000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\modbusTest.map" -o .\Objects\modbusTest.axf

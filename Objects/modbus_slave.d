@@ -1,0 +1,14 @@
+.\objects\modbus_slave.o: src\app\modbus_slave.c
+.\objects\modbus_slave.o: src\app\modbus_slave.h
+.\objects\modbus_slave.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\modbus_slave.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\modbus_slave.o: inc\modbus_types.h
+.\objects\modbus_slave.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\modbus_slave.o: src\app\modbus_data.h
+.\objects\modbus_slave.o: src\protocol\modbus_rtu.h
+.\objects\modbus_slave.o: src\protocol\modbus_pdu.h
+.\objects\modbus_slave.o: src\protocol\modbus_crc.h
+.\objects\modbus_slave.o: src\app\modbus_config.h
+.\objects\modbus_slave.o: src\app\../hal/hal_uart.h
+.\objects\modbus_slave.o: src\app\../hal/hal_timer.h
+.\objects\modbus_slave.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

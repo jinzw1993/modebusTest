@@ -1,6 +1,6 @@
 /**
  * @file hal_timer.c
- * @brief 定时器硬件抽象层实现
+ * @brief Timer Hardware Abstraction Layer Implementation
  * @author Claude
  * @date 2026-03-17
  */
@@ -8,12 +8,16 @@
 #include "hal_timer.h"
 #include <stddef.h>
 
-/* 当前注册的HAL接口 */
+/* ============================================================================
+ * Internal Variables
+ * ============================================================================ */
+
 static const hal_timer_t *s_hal_timer = NULL;
 
-/**
- * @brief 注册定时器HAL接口
- */
+/* ============================================================================
+ * API Implementation
+ * ============================================================================ */
+
 int hal_timer_register(const hal_timer_t *hal)
 {
     if (hal == NULL) {
@@ -24,9 +28,6 @@ int hal_timer_register(const hal_timer_t *hal)
     return 0;
 }
 
-/**
- * @brief 初始化定时器
- */
 int hal_timer_init(uint32_t timeout_ms)
 {
     if (s_hal_timer == NULL || s_hal_timer->init == NULL) {
@@ -36,9 +37,6 @@ int hal_timer_init(uint32_t timeout_ms)
     return s_hal_timer->init(timeout_ms);
 }
 
-/**
- * @brief 反初始化定时器
- */
 void hal_timer_deinit(void)
 {
     if (s_hal_timer != NULL && s_hal_timer->deinit != NULL) {
@@ -46,9 +44,6 @@ void hal_timer_deinit(void)
     }
 }
 
-/**
- * @brief 启动定时器
- */
 void hal_timer_start(void)
 {
     if (s_hal_timer != NULL && s_hal_timer->start != NULL) {
@@ -56,9 +51,6 @@ void hal_timer_start(void)
     }
 }
 
-/**
- * @brief 停止定时器
- */
 void hal_timer_stop(void)
 {
     if (s_hal_timer != NULL && s_hal_timer->stop != NULL) {
@@ -66,9 +58,6 @@ void hal_timer_stop(void)
     }
 }
 
-/**
- * @brief 重置定时器
- */
 void hal_timer_reset(void)
 {
     if (s_hal_timer != NULL && s_hal_timer->reset != NULL) {
@@ -76,9 +65,6 @@ void hal_timer_reset(void)
     }
 }
 
-/**
- * @brief 设置超时时间
- */
 void hal_timer_set_timeout(uint32_t timeout_ms)
 {
     if (s_hal_timer != NULL && s_hal_timer->set_timeout != NULL) {
@@ -86,9 +72,6 @@ void hal_timer_set_timeout(uint32_t timeout_ms)
     }
 }
 
-/**
- * @brief 设置超时回调函数
- */
 void hal_timer_set_callback(void (*callback)(void))
 {
     if (s_hal_timer != NULL && s_hal_timer->set_callback != NULL) {
@@ -96,9 +79,6 @@ void hal_timer_set_callback(void (*callback)(void))
     }
 }
 
-/**
- * @brief 检查定时器是否已超时
- */
 bool hal_timer_is_expired(void)
 {
     if (s_hal_timer != NULL && s_hal_timer->is_expired != NULL) {
@@ -106,4 +86,31 @@ bool hal_timer_is_expired(void)
     }
 
     return false;
+}
+
+bool hal_timer_is_running(void)
+{
+    if (s_hal_timer != NULL && s_hal_timer->is_running != NULL) {
+        return s_hal_timer->is_running();
+    }
+
+    return false;
+}
+
+uint32_t hal_timer_get_counter(void)
+{
+    if (s_hal_timer != NULL && s_hal_timer->get_counter != NULL) {
+        return s_hal_timer->get_counter();
+    }
+
+    return 0;
+}
+
+uint32_t hal_timer_get_elapsed_ms(void)
+{
+    if (s_hal_timer != NULL && s_hal_timer->get_elapsed_ms != NULL) {
+        return s_hal_timer->get_elapsed_ms();
+    }
+
+    return 0;
 }
