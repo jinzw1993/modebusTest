@@ -532,3 +532,4 @@ void modbus_slave_reset_stats(void)
     memset(&g_modbus.stats, 0, sizeof(g_modbus.stats));
 #endif
 }
+#endif /* MB_ENABLE_STATS */
