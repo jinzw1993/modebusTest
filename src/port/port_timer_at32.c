@@ -6,6 +6,7 @@
  */
 
 #include "../hal/hal_timer.h"
+#include <stddef.h>
 #include "at32f423.h"
 #include "at32f423_tmr.h"
 #include "at32f423_crm.h"
