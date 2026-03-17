@@ -163,7 +163,7 @@ static void port_uart_deinit(void)
 {
     usart_reset(PORT_USART);
     usart_enable(PORT_USART, FALSE);
-    nvic_irq_enable(PORT_USART_IRQn, FALSE);
+    nvic_irq_disable(PORT_USART_IRQn);
 }
 
 /**
