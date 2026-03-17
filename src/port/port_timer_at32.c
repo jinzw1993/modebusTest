@@ -91,7 +91,6 @@ void TMR3_GLOBAL_IRQHandler(void)
  */
 static int port_timer_init(uint32_t timeout_ms)
 {
-    tmr_clock_division_type clock_div;
     uint32_t prescaler;
     uint32_t period;
 

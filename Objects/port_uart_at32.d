@@ -1,6 +1,7 @@
 .\objects\port_uart_at32.o: src\port\port_uart_at32.c
 .\objects\port_uart_at32.o: src\port\../hal/hal_uart.h
 .\objects\port_uart_at32.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\port_uart_at32.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\port_uart_at32.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\port_uart_at32.o: Libraries\cmsis\cm4\device_support\at32f423.h
 .\objects\port_uart_at32.o: Libraries\cmsis\cm4\core_support\core_cm4.h
