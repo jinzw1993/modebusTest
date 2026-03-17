@@ -1,11 +1,8 @@
 /**
  * @file port_uart_at32.c
- * @brief AT32F432串口移植实现
+ * @brief AT32F423 UART port implementation
  * @author Claude
  * @date 2026-03-17
- *
- * @note 这是AT32F432标准外设库的移植实现
- *       使用USART1作为Modbus通信接口
  */
 
 #include "../hal/hal_uart.h"
@@ -13,81 +10,81 @@
 #include "at32f423_usart.h"
 #include "at32f423_gpio.h"
 #include "at32f423_crm.h"
-#include <stdint.h>
+#include <stddef.h>
 #include <string.h>
 
 /* ============================================================================
- * 移植配置
+ * Port Configuration
  * ============================================================================ */
 
-/* 使用USART1作为Modbus通信口 */
+/* Use USART1 as Modbus communication port */
 #define PORT_USART              USART1
 #define PORT_USART_IRQn         USART1_IRQn
 
-/* 引脚配置 (PA9=TX, PA10=RX) */
+/* Pin configuration (PA9=TX, PA10=RX) */
 #define PORT_USART_TX_GPIO      GPIOA
 #define PORT_USART_TX_PIN       GPIO_PINS_9
 #define PORT_USART_RX_GPIO      GPIOA
 #define PORT_USART_RX_PIN       GPIO_PINS_10
 
-/* 时钟配置 */
+/* Clock configuration */
 #define PORT_USART_CLK          CRM_USART1_PERIPH_CLOCK
 #define PORT_USART_GPIO_CLK     CRM_GPIOA_PERIPH_CLOCK
 
 /* ============================================================================
- * 内部变量
+ * Internal Variables
  * ============================================================================ */
 
-/* 接收回调函数指针 */
+/* RX callback function pointer */
 static void (*s_rx_callback)(uint8_t byte) = NULL;
 
-/* 发送完成回调函数指针 */
+/* TX complete callback function pointer */
 static void (*s_tx_complete_callback)(void) = NULL;
 
-/* 发送缓冲区（用于中断发送） */
+/* TX buffer (for interrupt transmission) */
 static uint8_t s_tx_buffer[256];
 static uint16_t s_tx_len = 0;
 static uint16_t s_tx_index = 0;
 static volatile uint8_t s_tx_busy = 0;
 
-/* 接收字节缓冲 */
+/* RX byte buffer */
 static uint8_t s_rx_byte;
 
 /* ============================================================================
- * AT32中断服务函数
+ * AT32 Interrupt Service Function
  * ============================================================================ */
 
 /**
- * @brief USART1中断服务函数
+ * @brief USART1 interrupt handler
  */
 void USART1_IRQHandler(void)
 {
-    /* 接收中断 */
+    /* RX interrupt */
     if (usart_flag_get(PORT_USART, USART_RDBF_FLAG) != RESET) {
-        /* 读取接收到的字节 */
+        /* Read received byte */
         s_rx_byte = usart_data_receive(PORT_USART);
 
-        /* 调用Modbus回调 */
+        /* Call Modbus callback */
         if (s_rx_callback != NULL) {
             s_rx_callback(s_rx_byte);
         }
     }
 
-    /* 发送完成中断 */
+    /* TX complete interrupt */
     if (usart_flag_get(PORT_USART, USART_TDC_FLAG) != RESET) {
         usart_interrupt_enable(PORT_USART, USART_TDC_INT, FALSE);
 
         if (s_tx_index < s_tx_len) {
-            /* 继续发送下一个字节 */
+            /* Continue sending next byte */
             usart_data_transmit(PORT_USART, s_tx_buffer[s_tx_index++]);
             usart_interrupt_enable(PORT_USART, USART_TDC_INT, TRUE);
         } else {
-            /* 发送完成 */
+            /* Transmission complete */
             s_tx_busy = 0;
             s_tx_index = 0;
             s_tx_len = 0;
 
-            /* 调用发送完成回调 */
+            /* Call TX complete callback */
             if (s_tx_complete_callback != NULL) {
                 s_tx_complete_callback();
             }
@@ -96,22 +93,21 @@ void USART1_IRQHandler(void)
 }
 
 /* ============================================================================
- * 串口HAL接口实现
+ * UART HAL Interface Implementation
  * ============================================================================ */
 
 /**
- * @brief 初始化串口
+ * @brief Initialize UART
  */
 static int port_uart_init(uint32_t baudrate, hal_uart_parity_t parity)
 {
     gpio_init_type gpio_init_struct;
-    usart_init_type usart_init_struct;
 
-    /* 使能时钟 */
+    /* Enable clocks */
     crm_periph_clock_enable(PORT_USART_CLK, TRUE);
     crm_periph_clock_enable(PORT_USART_GPIO_CLK, TRUE);
 
-    /* 配置TX引脚为复用推挽输出 */
+    /* Configure TX pin as alternate function push-pull */
     gpio_init_struct.gpio_pins = PORT_USART_TX_PIN;
     gpio_init_struct.gpio_mode = GPIO_MODE_MUX;
     gpio_init_struct.gpio_out_type = GPIO_OUTPUT_PUSH_PULL;
@@ -119,52 +115,49 @@ static int port_uart_init(uint32_t baudrate, hal_uart_parity_t parity)
     gpio_init_struct.gpio_drive_strength = GPIO_DRIVE_STRENGTH_STRONGER;
     gpio_init(PORT_USART_TX_GPIO, &gpio_init_struct);
 
-    /* 配置RX引脚为浮空输入 */
+    /* Configure RX pin as floating input */
     gpio_init_struct.gpio_pins = PORT_USART_RX_PIN;
     gpio_init_struct.gpio_mode = GPIO_MODE_INPUT;
     gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
     gpio_init(PORT_USART_RX_GPIO, &gpio_init_struct);
 
-    /* 复位USART */
+    /* Reset USART */
     usart_reset(PORT_USART);
 
-    /* 配置USART参数 */
-    usart_init_struct.baudrate = baudrate;
-    usart_init_struct.word_length = USART_WL_8B;
-    usart_init_struct.stop_bits = USART_STB_1BIT;
+    /* Configure USART parameters */
+    usart_init(PORT_USART, baudrate, USART_DATA_8BITS, USART_STOP_1_BIT);
 
-    /* 校验位配置 */
+    /* Configure parity */
     switch (parity) {
         case HAL_UART_PARITY_ODD:
-            usart_init_struct.parity = USART_PA_ODD;
+            usart_parity_selection_config(PORT_USART, USART_PARITY_ODD);
             break;
         case HAL_UART_PARITY_EVEN:
-            usart_init_struct.parity = USART_PA_EVEN;
+            usart_parity_selection_config(PORT_USART, USART_PARITY_EVEN);
             break;
         default:
-            usart_init_struct.parity = USART_PA_NONE;
+            usart_parity_selection_config(PORT_USART, USART_PARITY_NONE);
             break;
     }
 
-    usart_init_struct.mode = USART_MODE_TX_RX;
-    usart_init_struct.hardware_flow_control = USART_FLOW_CONTROL_NONE;
+    /* Enable TX and RX */
+    usart_transmitter_enable(PORT_USART, TRUE);
+    usart_receiver_enable(PORT_USART, TRUE);
 
-    usart_init(PORT_USART, &usart_init_struct);
-
-    /* 配置中断优先级 */
+    /* Configure interrupt priority */
     nvic_irq_enable(PORT_USART_IRQn, 0, 0);
 
-    /* 使能接收中断 */
-    usart_interrupt_enable(PORT_USART, USART_RD_INT, TRUE);
+    /* Enable RX interrupt */
+    usart_interrupt_enable(PORT_USART, USART_RDBF_INT, TRUE);
 
-    /* 使能USART */
+    /* Enable USART */
     usart_enable(PORT_USART, TRUE);
 
     return 0;
 }
 
 /**
- * @brief 反初始化串口
+ * @brief Deinitialize UART
  */
 static void port_uart_deinit(void)
 {
@@ -174,29 +167,29 @@ static void port_uart_deinit(void)
 }
 
 /**
- * @brief 发送数据（异步）
+ * @brief Send data (async)
  */
 static int port_uart_send(const uint8_t *data, uint16_t len)
 {
     if (s_tx_busy) {
-        return -1;  /* 忙 */
+        return -1;  /* Busy */
     }
 
     if (len > sizeof(s_tx_buffer)) {
-        return -1;  /* 缓冲区太小 */
+        return -1;  /* Buffer too small */
     }
 
     if (len == 0) {
         return 0;
     }
 
-    /* 复制数据到发送缓冲区 */
+    /* Copy data to TX buffer */
     memcpy(s_tx_buffer, data, len);
     s_tx_len = len;
     s_tx_index = 0;
     s_tx_busy = 1;
 
-    /* 启动发送（发送第一个字节） */
+    /* Start transmission (send first byte) */
     usart_data_transmit(PORT_USART, s_tx_buffer[s_tx_index++]);
     usart_interrupt_enable(PORT_USART, USART_TDC_INT, TRUE);
 
@@ -204,7 +197,7 @@ static int port_uart_send(const uint8_t *data, uint16_t len)
 }
 
 /**
- * @brief 设置接收回调函数
+ * @brief Set RX callback
  */
 static void port_uart_set_rx_callback(void (*callback)(uint8_t byte))
 {
@@ -212,7 +205,7 @@ static void port_uart_set_rx_callback(void (*callback)(uint8_t byte))
 }
 
 /**
- * @brief 设置发送完成回调函数
+ * @brief Set TX complete callback
  */
 static void port_uart_set_tx_complete_callback(void (*callback)(void))
 {
@@ -220,10 +213,10 @@ static void port_uart_set_tx_complete_callback(void (*callback)(void))
 }
 
 /* ============================================================================
- * HAL接口注册
+ * HAL Interface Registration
  * ============================================================================ */
 
-/* AT32串口HAL接口 */
+/* AT32 UART HAL interface */
 const hal_uart_t hal_uart_at32 = {
     .init = port_uart_init,
     .deinit = port_uart_deinit,
@@ -233,7 +226,7 @@ const hal_uart_t hal_uart_at32 = {
 };
 
 /**
- * @brief 注册AT32串口HAL接口
+ * @brief Register AT32 UART HAL interface
  */
 void port_uart_at32_register(void)
 {
