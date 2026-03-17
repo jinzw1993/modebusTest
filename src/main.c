@@ -19,8 +19,17 @@
  * 移植层声明
  * ============================================================================ */
 
+#if defined(AT32F423) || defined(AT32F423K8U7_4)
+extern void port_uart_at32_register(void);
+extern void port_timer_at32_register(void);
+#define port_uart_register  port_uart_at32_register
+#define port_timer_register port_timer_at32_register
+#else
 extern void port_uart_stm32_register(void);
 extern void port_timer_stm32_register(void);
+#define port_uart_register  port_uart_stm32_register
+#define port_timer_register port_timer_stm32_register
+#endif
 
 /* ============================================================================
  * 应用层数据区（静态分配）
@@ -210,8 +219,8 @@ static void system_init(void)
     printf("===========================================\n");
 
     /* 注册HAL接口 */
-    port_uart_stm32_register();
-    port_timer_stm32_register();
+    port_uart_register();
+    port_timer_register();
 
     /* 配置数据区 */
     mb_data_config_t data_cfg = {

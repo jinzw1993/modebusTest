@@ -27,7 +27,7 @@ build/
 .cproject
 .settings/
 *.uvproj
-*.uvprojx
+# *.uvprojx  # 允许提交Keil项目文件
 *.uvopt
 *.uvoptx
 .iar/
