@@ -1,0 +1,50 @@
+# 编译输出
+build/
+*.o
+*.obj
+*.elf
+*.hex
+*.bin
+*.map
+*.lst
+*.a
+*.lib
+
+# 调试文件
+*.log
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# IDE和编辑器
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.cproject
+.settings/
+*.uvproj
+*.uvprojx
+*.uvopt
+*.uvoptx
+.iar/
+*.eww
+*.ewp
+*.eww
+*.ewd
+
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# 备份文件
+*.bak
+*.old
+*.orig
+
+# 临时文件
+*.tmp
+*.temp
