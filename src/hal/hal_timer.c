@@ -15,7 +15,7 @@
 static const hal_timer_t *s_hal_timer = NULL;
 
 /* ============================================================================
- * API Implementation
+ * Register Function
  * ============================================================================ */
 
 int hal_timer_register(const hal_timer_t *hal)
@@ -23,17 +23,19 @@ int hal_timer_register(const hal_timer_t *hal)
     if (hal == NULL) {
         return -1;
     }
-
     s_hal_timer = hal;
     return 0;
 }
+
+/* ============================================================================
+ * API Implementation
+ * ============================================================================ */
 
 int hal_timer_init(uint32_t timeout_ms)
 {
     if (s_hal_timer == NULL || s_hal_timer->init == NULL) {
         return -1;
     }
-
     return s_hal_timer->init(timeout_ms);
 }
 
@@ -81,36 +83,16 @@ void hal_timer_set_callback(void (*callback)(void))
 
 bool hal_timer_is_expired(void)
 {
-    if (s_hal_timer != NULL && s_hal_timer->is_expired != NULL) {
-        return s_hal_timer->is_expired();
+    if (s_hal_timer == NULL || s_hal_timer->is_expired == NULL) {
+        return false;
     }
-
-    return false;
+    return s_hal_timer->is_expired();
 }
 
 bool hal_timer_is_running(void)
 {
-    if (s_hal_timer != NULL && s_hal_timer->is_running != NULL) {
-        return s_hal_timer->is_running();
+    if (s_hal_timer == NULL || s_hal_timer->is_running == NULL) {
+        return false;
     }
-
-    return false;
-}
-
-uint32_t hal_timer_get_counter(void)
-{
-    if (s_hal_timer != NULL && s_hal_timer->get_counter != NULL) {
-        return s_hal_timer->get_counter();
-    }
-
-    return 0;
-}
-
-uint32_t hal_timer_get_elapsed_ms(void)
-{
-    if (s_hal_timer != NULL && s_hal_timer->get_elapsed_ms != NULL) {
-        return s_hal_timer->get_elapsed_ms();
-    }
-
-    return 0;
+    return s_hal_timer->is_running();
 }

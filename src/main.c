@@ -1,22 +1,20 @@
 /**
  * @file main.c
- * @brief Modbus RTU从站示例程序
+ * @brief Modbus RTU Slave Example
  * @author Claude
  * @date 2026-03-17
- *
- * @note 这是一个示例主程序，展示如何使用Modbus从站协议栈
  */
 
 #include <stdio.h>
 #include <string.h>
-#include "app/modbus_slave.h"
-#include "app/modbus_data.h"
-#include "app/modbus_config.h"
-#include "hal/hal_uart.h"
-#include "hal/hal_timer.h"
+#include "modbus_slave.h"
+#include "modbus_data.h"
+#include "modbus_config.h"
+#include "hal_uart.h"
+#include "hal_timer.h"
 
 /* ============================================================================
- * 移植层声明
+ * Port Layer Declaration
  * ============================================================================ */
 
 #if defined(AT32F423) || defined(AT32F423K8U7_4)

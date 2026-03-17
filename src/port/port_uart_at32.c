@@ -70,13 +70,16 @@ static volatile uint32_t s_rx_errors = 0;
 static void rs485_init(void)
 {
     gpio_init_type gpio;
+
     crm_periph_clock_enable(CRM_GPIOA_PERIPH_CLOCK, TRUE);
+
     gpio.gpio_pins   = PORT_RS485_DE_PIN;
     gpio.gpio_mode   = GPIO_MODE_OUTPUT;
     gpio.gpio_out_type = GPIO_OUTPUT_PUSH_PULL;
     gpio.gpio_pull   = GPIO_PULL_NONE;
     gpio.gpio_drive_strength = GPIO_DRIVE_STRENGTH_STRONGER;
     gpio_init(PORT_RS485_DE_GPIO, &gpio);
+
     RS485_RX_MODE();
 }
 #endif
@@ -137,15 +140,15 @@ void USART1_IRQHandler(void)
 }
 
 /* ============================================================================
- * HAL Implementation
+ * HAL Interface Implementation
  * ============================================================================ */
 
 static int port_uart_init(uint32_t baudrate, hal_uart_parity_t parity)
 {
     gpio_init_type gpio;
     usart_data_bit_num_type data_bits = USART_DATA_8BITS;
-    usart_stop_bit_num_type stop_bits = USART_STOP_1_BIT;
-    usart_parity_selection_type parity_sel = USART_PARITY_NONE;
+    usart_stop_bit_num_type stop_bits;
+    usart_parity_selection_type parity_sel;
 
     /* Enable clocks */
     crm_periph_clock_enable(PORT_USARTx_GPIO_CLK, TRUE);
@@ -186,13 +189,15 @@ static int port_uart_init(uint32_t baudrate, hal_uart_parity_t parity)
             break;
         default:
             parity_sel = USART_PARITY_NONE;
-            stop_bits = USART_STOP_2_BIT;  /* Modbus: no parity = 2 stop bits */
+            stop_bits = USART_STOP_2_BIT;
             break;
     }
 
     /* Initialize USART */
     usart_init(PORT_USARTx, baudrate, data_bits, stop_bits);
     usart_parity_selection_config(PORT_USARTx, parity_sel);
+
+    /* Enable TX/RX */
     usart_transmitter_enable(PORT_USARTx, TRUE);
     usart_receiver_enable(PORT_USARTx, TRUE);
 
@@ -204,6 +209,12 @@ static int port_uart_init(uint32_t baudrate, hal_uart_parity_t parity)
 
     /* Enable USART */
     usart_enable(PORT_USARTx, TRUE);
+
+    /* Clear initial flags */
+    usart_flag_clear(PORT_USARTx, USART_ROERR_FLAG);
+    usart_flag_clear(PORT_USARTx, USART_PERR_FLAG);
+    usart_flag_clear(PORT_USARTx, USART_FERR_FLAG);
+    usart_flag_clear(PORT_USARTx, USART_NERR_FLAG);
 
     return 0;
 }
@@ -262,10 +273,10 @@ static void port_uart_set_tx_complete_callback(void (*callback)(void))
 }
 
 /* ============================================================================
- * HAL Registration
+ * HAL Instance
  * ============================================================================ */
 
-const hal_uart_t hal_uart_at32 = {
+static const hal_uart_t s_hal_uart_at32 = {
     .init = port_uart_init,
     .deinit = port_uart_deinit,
     .send = port_uart_send,
@@ -276,7 +287,11 @@ const hal_uart_t hal_uart_at32 = {
     .set_tx_complete_callback = port_uart_set_tx_complete_callback
 };
 
+/* ============================================================================
+ * Registration
+ * ============================================================================ */
+
 void port_uart_at32_register(void)
 {
-    hal_uart_register(&hal_uart_at32);
+    hal_uart_register(&s_hal_uart_at32);
 }

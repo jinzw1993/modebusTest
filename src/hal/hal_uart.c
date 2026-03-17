@@ -15,7 +15,7 @@
 static const hal_uart_t *s_hal_uart = NULL;
 
 /* ============================================================================
- * API Implementation
+ * Register Function
  * ============================================================================ */
 
 int hal_uart_register(const hal_uart_t *hal)
@@ -23,17 +23,19 @@ int hal_uart_register(const hal_uart_t *hal)
     if (hal == NULL) {
         return -1;
     }
-
     s_hal_uart = hal;
     return 0;
 }
+
+/* ============================================================================
+ * API Implementation
+ * ============================================================================ */
 
 int hal_uart_init(uint32_t baudrate, hal_uart_parity_t parity)
 {
     if (s_hal_uart == NULL || s_hal_uart->init == NULL) {
         return -1;
     }
-
     return s_hal_uart->init(baudrate, parity);
 }
 
@@ -49,7 +51,6 @@ int hal_uart_send(const uint8_t *data, uint16_t len)
     if (s_hal_uart == NULL || s_hal_uart->send == NULL) {
         return -1;
     }
-
     return s_hal_uart->send(data, len);
 }
 
@@ -58,7 +59,6 @@ int hal_uart_is_tx_busy(void)
     if (s_hal_uart == NULL || s_hal_uart->is_tx_busy == NULL) {
         return 0;
     }
-
     return s_hal_uart->is_tx_busy();
 }
 
@@ -67,7 +67,6 @@ uint32_t hal_uart_get_rx_errors(void)
     if (s_hal_uart == NULL || s_hal_uart->get_rx_errors == NULL) {
         return 0;
     }
-
     return s_hal_uart->get_rx_errors();
 }
 
