@@ -166,7 +166,7 @@ static void action_start_rx(void)
     /* 清除错误 */
     g_modbus.last_error = MB_ERROR_NONE;
 
-    MB_DEBUG_PRINT("开始接收, 首字节: 0x%02X", g_modbus.rx_byte);
+    MB_DEBUG_PRINT("Start RX, first byte: 0x%02X", g_modbus.rx_byte);
 }
 
 /**
@@ -200,7 +200,7 @@ static void action_process_frame(void)
     /* 停止定时器 */
     hal_timer_stop();
 
-    MB_DEBUG_PRINT("帧接收完成, 长度: %d", g_modbus.rx_buf.length);
+    MB_DEBUG_PRINT("Frame RX done, len: %d", g_modbus.rx_buf.length);
 
 #if MB_ENABLE_STATS
     g_modbus.stats.rx_count++;
@@ -208,7 +208,7 @@ static void action_process_frame(void)
 
     /* 验证CRC */
     if (modbus_crc_verify(g_modbus.rx_buf.buffer, g_modbus.rx_buf.length) != 0) {
-        MB_DEBUG_PRINT("CRC校验失败");
+        MB_DEBUG_PRINT("CRC check failed");
 #if MB_ENABLE_STATS
         g_modbus.stats.crc_error_count++;
         g_modbus.stats.error_count++;
@@ -221,7 +221,7 @@ static void action_process_frame(void)
     /* 解析RTU帧 */
     ret = modbus_rtu_parse(g_modbus.rx_buf.buffer, g_modbus.rx_buf.length, &frame);
     if (ret != 0) {
-        MB_DEBUG_PRINT("帧解析失败");
+        MB_DEBUG_PRINT("Frame parse failed");
 #if MB_ENABLE_STATS
         g_modbus.stats.error_count++;
 #endif
@@ -237,22 +237,22 @@ static void action_process_frame(void)
 #if MB_ENABLE_STATS
             g_modbus.stats.broadcast_count++;
 #endif
-            MB_DEBUG_PRINT("收到广播帧");
+            MB_DEBUG_PRINT("Broadcast frame received");
         } else {
             /* 不是发给本站的 */
-            MB_DEBUG_PRINT("地址不匹配: %d != %d", frame.slave_addr, g_modbus.slave_id);
+            MB_DEBUG_PRINT("Addr mismatch: %d != %d", frame.slave_addr, g_modbus.slave_id);
             state_machine_process_event(MB_EVENT_RESET);
             return;
         }
 #else
         /* 不是发给本站的 */
-        MB_DEBUG_PRINT("地址不匹配: %d != %d", frame.slave_addr, g_modbus.slave_id);
+        MB_DEBUG_PRINT("Addr mismatch: %d != %d", frame.slave_addr, g_modbus.slave_id);
         state_machine_process_event(MB_EVENT_RESET);
         return;
 #endif
     }
 
-    MB_DEBUG_PRINT("处理功能码: 0x%02X", frame.function_code);
+    MB_DEBUG_PRINT("Process FC: 0x%02X", frame.function_code);
 
     /* 调用接收回调 */
     if (g_modbus.on_rx_callback) {
@@ -303,7 +303,7 @@ static void action_process_frame(void)
             g_modbus.tx_buf.buffer
         );
 
-        MB_DEBUG_PRINT("异常响应: 0x%02X", pdu_result.exception);
+        MB_DEBUG_PRINT("Exception resp: 0x%02X", pdu_result.exception);
     }
 
     state_machine_process_event(MB_EVENT_PROCESS_COMPLETE);
@@ -314,7 +314,7 @@ static void action_process_frame(void)
  */
 static void action_start_tx(void)
 {
-    MB_DEBUG_PRINT("开始发送, 长度: %d", g_modbus.tx_buf.length);
+    MB_DEBUG_PRINT("Start TX, len: %d", g_modbus.tx_buf.length);
 
     /* 发送响应帧 */
     hal_uart_send(g_modbus.tx_buf.buffer, g_modbus.tx_buf.length);
@@ -329,7 +329,7 @@ static void action_start_tx(void)
  */
 static void action_tx_complete(void)
 {
-    MB_DEBUG_PRINT("发送完成");
+    MB_DEBUG_PRINT("TX done");
 
     /* 调用发送回调 */
     if (g_modbus.on_tx_callback) {
@@ -346,7 +346,7 @@ static void action_tx_complete(void)
  */
 static void action_handle_error(void)
 {
-    MB_DEBUG_PRINT("错误: %d", g_modbus.last_error);
+    MB_DEBUG_PRINT("Error: %d", g_modbus.last_error);
 
 #if MB_ENABLE_STATS
     g_modbus.stats.error_count++;
@@ -372,7 +372,7 @@ static void action_reset(void)
     g_modbus.last_error = MB_ERROR_NONE;
     g_modbus.state = MB_STATE_IDLE;
 
-    MB_DEBUG_PRINT("状态机复位");
+    MB_DEBUG_PRINT("State machine reset");
 }
 
 /* ============================================================================
@@ -438,7 +438,7 @@ int modbus_slave_init(uint8_t slave_id)
     hal_uart_set_tx_complete_callback(uart_tx_complete_callback);
     hal_timer_set_callback(timer_timeout_callback);
 
-    MB_DEBUG_PRINT("Modbus从站初始化完成, 地址: %d", slave_id);
+    MB_DEBUG_PRINT("Modbus slave init done, addr: %d", slave_id);
 
     return 0;
 }
@@ -452,7 +452,7 @@ void modbus_slave_deinit(void)
 
     memset(&g_modbus, 0, sizeof(g_modbus));
 
-    MB_DEBUG_PRINT("Modbus从站反初始化");
+    MB_DEBUG_PRINT("Modbus slave deinit");
 }
 
 int modbus_slave_set_data_config(const mb_data_config_t *config)
@@ -464,7 +464,7 @@ void modbus_slave_set_address(uint8_t slave_id)
 {
     if (slave_id >= MB_SLAVE_ADDR_MIN && slave_id <= MB_SLAVE_ADDR_MAX) {
         g_modbus.slave_id = slave_id;
-        MB_DEBUG_PRINT("从站地址修改为: %d", slave_id);
+        MB_DEBUG_PRINT("Slave addr changed to: %d", slave_id);
     }
 }
 

@@ -487,7 +487,7 @@
             <File>
               <FileName>startup_at32f423.s</FileName>
               <FileType>2</FileType>
-              <FilePath>Libraries\cmsis\cm4\device_support\startup\startup_at32f423.s</FilePath>
+              <FilePath>Libraries\cmsis\cm4\device_support\startup\mdk\startup_at32f423.s</FilePath>
             </File>
           </Files>
         </Group>

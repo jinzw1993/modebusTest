@@ -48,3 +48,6 @@ Thumbs.db
 # 临时文件
 *.tmp
 *.temp
+
+# 第三方库（AT32F423 Firmware Library）
+Libraries/

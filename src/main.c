@@ -58,28 +58,28 @@ static uint16_t s_input_registers_buffer[256];
  */
 static void on_holding_reg_written(uint16_t addr, uint16_t value)
 {
-    printf("保持寄存器[%d]被写入: 0x%04X (%d)\n", addr, value, value);
+    printf("Holding reg[%d] written: 0x%04X (%d)\n", addr, value, value);
 
     /* 根据地址执行特定操作 */
     switch (addr) {
         case 0:
             /* 控制寄存器 */
             if (value & 0x0001) {
-                printf("  -> 启动命令\n");
+                printf("  -> Start cmd\n");
             }
             if (value & 0x0002) {
-                printf("  -> 停止命令\n");
+                printf("  -> Stop cmd\n");
             }
             break;
 
         case 1:
             /* 设定值寄存器 */
-            printf("  -> 新设定值: %d\n", value);
+            printf("  -> New setpoint: %d\n", value);
             break;
 
         case 2:
             /* 模式选择寄存器 */
-            printf("  -> 模式: %d\n", value);
+            printf("  -> Mode: %d\n", value);
             break;
 
         default:
@@ -134,18 +134,18 @@ static uint16_t on_input_reg_read(uint16_t addr)
  */
 static void on_coil_written(uint16_t addr, uint8_t value)
 {
-    printf("线圈[%d]被写入: %s\n", addr, value ? "ON" : "OFF");
+    printf("Coil[%d] written: %s\n", addr, value ? "ON" : "OFF");
 
     /* 根据地址控制实际输出（如继电器） */
     switch (addr) {
         case 0:
             /* 控制继电器1 */
-            printf("  -> 继电器1: %s\n", value ? "吸合" : "断开");
+            printf("  -> Relay1: %s\n", value ? "ON" : "OFF");
             break;
 
         case 1:
             /* 控制继电器2 */
-            printf("  -> 继电器2: %s\n", value ? "吸合" : "断开");
+            printf("  -> Relay2: %s\n", value ? "ON" : "OFF");
             break;
 
         default:
@@ -200,7 +200,7 @@ static uint8_t on_discrete_input_read(uint16_t addr)
  */
 static void on_error(uint8_t error)
 {
-    printf("Modbus错误: %d\n", error);
+    printf("Modbus error: %d\n", error);
 }
 
 /* ============================================================================
@@ -213,9 +213,9 @@ static void on_error(uint8_t error)
 static void system_init(void)
 {
     printf("===========================================\n");
-    printf("  Modbus RTU从站示例程序\n");
-    printf("  从站地址: %d\n", MB_SLAVE_ID_DEFAULT);
-    printf("  波特率: %d, 偶校验\n", MB_UART_BAUDRATE_DEFAULT);
+    printf("  Modbus RTU Slave Demo\n");
+    printf("  Slave Addr: %d\n", MB_SLAVE_ID_DEFAULT);
+    printf("  Baudrate: %d, Even Parity\n", MB_UART_BAUDRATE_DEFAULT);
     printf("===========================================\n");
 
     /* 注册HAL接口 */
@@ -258,7 +258,7 @@ static void system_init(void)
     /* 初始化T3.5定时器 */
     hal_timer_init(MB_T35_TIMEOUT_MS);
 
-    printf("初始化完成，等待Modbus请求...\n");
+    printf("Init done, waiting for Modbus request...\n");
 }
 
 /* ============================================================================
@@ -303,12 +303,12 @@ void print_stats(void)
     mb_stats_t stats;
     modbus_slave_get_stats(&stats);
 
-    printf("\n--- Modbus统计 ---\n");
-    printf("接收帧数: %lu\n", stats.rx_count);
-    printf("发送帧数: %lu\n", stats.tx_count);
-    printf("错误计数: %lu\n", stats.error_count);
-    printf("CRC错误: %lu\n", stats.crc_error_count);
-    printf("广播帧数: %lu\n", stats.broadcast_count);
+    printf("\n--- Modbus Stats ---\n");
+    printf("RX frames: %lu\n", stats.rx_count);
+    printf("TX frames: %lu\n", stats.tx_count);
+    printf("Errors: %lu\n", stats.error_count);
+    printf("CRC errors: %lu\n", stats.crc_error_count);
+    printf("Broadcasts: %lu\n", stats.broadcast_count);
     printf("------------------\n\n");
 #endif
 }
@@ -322,7 +322,7 @@ void simulate_request(const uint8_t *frame, uint16_t len)
 {
     uint16_t i;
 
-    printf("模拟接收帧: ");
+    printf("Simulate RX frame: ");
     for (i = 0; i < len; i++) {
         printf("%02X ", frame[i]);
         modbus_slave_rx_byte_isr(frame[i]);
@@ -342,7 +342,7 @@ void run_self_test(void)
     /* 01 03 00 00 00 0A C5 CD */
     uint8_t read_regs_request[] = { 0x01, 0x03, 0x00, 0x00, 0x00, 0x0A, 0xC5, 0xCD };
 
-    printf("\n=== 自测试开始 ===\n");
+    printf("\n=== Self-test start ===\n");
 
     /* 预设一些保持寄存器值 */
     s_holding_registers_buffer[0] = 0x1234;
@@ -352,7 +352,7 @@ void run_self_test(void)
     /* 模拟接收读保持寄存器请求 */
     simulate_request(read_regs_request, sizeof(read_regs_request));
 
-    printf("=== 自测试完成 ===\n\n");
+    printf("=== Self-test done ===\n\n");
 }
 
 #endif /* MB_DEBUG_ENABLE */
