@@ -268,6 +268,16 @@ static void system_init(void)
  */
 int main(void)
 {
+    volatile uint32_t i;
+    volatile uint32_t count;
+
+    /* 5秒延时启动 */
+    for (count = 0; count < 500; count++) {
+        for (i = 0; i < 60000; i++) {
+            /* 空循环延时 */
+        }
+    }
+
     /* 系统初始化 */
     system_init();
 
