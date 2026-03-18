@@ -482,14 +482,61 @@ void hal_uart_set_tx_complete_callback(void (*callback)(void));
 
 ---
 
+### hal_uart_is_tx_busy
+
+**Description:** Check if transmission is busy
+
+**Prototype:**
+```c
+int hal_uart_is_tx_busy(void);
+```
+
+**Return Value:**
+| Value | Description |
+|-------|-------------|
+| 0 | Idle |
+| Non-zero | Busy |
+
+---
+
+### hal_uart_get_rx_errors
+
+**Description:** Get receive error count
+
+**Prototype:**
+```c
+uint32_t hal_uart_get_rx_errors(void);
+```
+
+**Return Value:** Cumulative receive error count
+
+---
+
+### hal_uart_clear_rx_errors
+
+**Description:** Clear receive error count
+
+**Prototype:**
+```c
+void hal_uart_clear_rx_errors(void);
+```
+
+---
+
 ### hal_uart_register
 
 **Description:** Register HAL UART driver
 
 **Prototype:**
 ```c
-void hal_uart_register(const hal_uart_t *uart);
+int hal_uart_register(const hal_uart_t *uart);
 ```
+
+**Return Value:**
+| Value | Description |
+|-------|-------------|
+| 0 | Success |
+| -1 | Invalid parameter |
 
 ---
 
@@ -605,14 +652,37 @@ bool hal_timer_is_expired(void);
 
 ---
 
+### hal_timer_is_running
+
+**Description:** Check if timer is running
+
+**Prototype:**
+```c
+bool hal_timer_is_running(void);
+```
+
+**Return Value:**
+| Value | Description |
+|-------|-------------|
+| true | Running |
+| false | Not running |
+
+---
+
 ### hal_timer_register
 
 **Description:** Register HAL timer driver
 
 **Prototype:**
 ```c
-void hal_timer_register(const hal_timer_t *timer);
+int hal_timer_register(const hal_timer_t *timer);
 ```
+
+**Return Value:**
+| Value | Description |
+|-------|-------------|
+| 0 | Success |
+| -1 | Invalid parameter |
 
 ---
 
@@ -688,9 +758,12 @@ typedef enum {
 
 ```c
 typedef struct {
-    int (*init)(uint32_t baudrate, hal_uart_parity_t parity);
+    int  (*init)(uint32_t baudrate, hal_uart_parity_t parity);
     void (*deinit)(void);
-    int (*send)(const uint8_t *data, uint16_t len);
+    int  (*send)(const uint8_t *data, uint16_t len);
+    int  (*is_tx_busy)(void);
+    uint32_t (*get_rx_errors)(void);
+    void (*clear_rx_errors)(void);
     void (*set_rx_callback)(void (*callback)(uint8_t byte));
     void (*set_tx_complete_callback)(void (*callback)(void));
 } hal_uart_t;
@@ -703,8 +776,8 @@ typedef struct {
 **Description:** Timer HAL interface
 
 ```c
-typedef struct {
-    int (*init)(uint32_t timeout_ms);
+typedef struct hal_timer {
+    int  (*init)(uint32_t timeout_ms);
     void (*deinit)(void);
     void (*start)(void);
     void (*stop)(void);
@@ -712,6 +785,7 @@ typedef struct {
     void (*set_timeout)(uint32_t timeout_ms);
     void (*set_callback)(void (*callback)(void));
     bool (*is_expired)(void);
+    bool (*is_running)(void);
 } hal_timer_t;
 ```
 
@@ -786,6 +860,9 @@ Implement all required functions:
 - `init` - Initialize UART with baudrate and parity
 - `deinit` - Deinitialize UART
 - `send` - Send data asynchronously
+- `is_tx_busy` - Check if transmission is busy
+- `get_rx_errors` - Get receive error count
+- `clear_rx_errors` - Clear receive error count
 - `set_rx_callback` - Set RX callback
 - `set_tx_complete_callback` - Set TX complete callback
 
@@ -797,7 +874,8 @@ Implement all required functions:
 - `reset` - Reset counter
 - `set_timeout` - Set timeout value
 - `set_callback` - Set timeout callback
-- `is_expired` - Check expiration (optional)
+- `is_expired` - Check expiration
+- `is_running` - Check if timer is running
 
 ### Step 3: Register HAL
 
@@ -817,4 +895,5 @@ void port_timer_xxx_register(void) {
 
 | Version | Date | Description |
 |---------|------|-------------|
+| 1.1 | 2026-03-18 | Added UART error statistics and timer running state APIs |
 | 1.0 | 2026-03-17 | Initial release |

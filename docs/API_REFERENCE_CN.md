@@ -501,14 +501,61 @@ void hal_uart_set_tx_complete_callback(void (*callback)(void));
 
 ---
 
+### hal_uart_is_tx_busy
+
+**功能：** 检查发送是否忙碌
+
+**原型：**
+```c
+int hal_uart_is_tx_busy(void);
+```
+
+**返回值：**
+| 值 | 说明 |
+|----|------|
+| 0 | 空闲 |
+| 非零 | 忙碌 |
+
+---
+
+### hal_uart_get_rx_errors
+
+**功能：** 获取接收错误计数
+
+**原型：**
+```c
+uint32_t hal_uart_get_rx_errors(void);
+```
+
+**返回值：** 累计接收错误次数
+
+---
+
+### hal_uart_clear_rx_errors
+
+**功能：** 清除接收错误计数
+
+**原型：**
+```c
+void hal_uart_clear_rx_errors(void);
+```
+
+---
+
 ### hal_uart_register
 
 **功能：** 注册HAL串口驱动
 
 **原型：**
 ```c
-void hal_uart_register(const hal_uart_t *uart);
+int hal_uart_register(const hal_uart_t *uart);
 ```
+
+**返回值：**
+| 值 | 说明 |
+|----|------|
+| 0 | 成功 |
+| -1 | 参数无效 |
 
 ---
 
@@ -624,14 +671,37 @@ bool hal_timer_is_expired(void);
 
 ---
 
+### hal_timer_is_running
+
+**功能：** 检查定时器是否正在运行
+
+**原型：**
+```c
+bool hal_timer_is_running(void);
+```
+
+**返回值：**
+| 值 | 说明 |
+|----|------|
+| true | 正在运行 |
+| false | 未运行 |
+
+---
+
 ### hal_timer_register
 
 **功能：** 注册HAL定时器驱动
 
 **原型：**
 ```c
-void hal_timer_register(const hal_timer_t *timer);
+int hal_timer_register(const hal_timer_t *timer);
 ```
+
+**返回值：**
+| 值 | 说明 |
+|----|------|
+| 0 | 成功 |
+| -1 | 参数无效 |
 
 ---
 
@@ -707,9 +777,12 @@ typedef enum {
 
 ```c
 typedef struct {
-    int (*init)(uint32_t baudrate, hal_uart_parity_t parity);
+    int  (*init)(uint32_t baudrate, hal_uart_parity_t parity);
     void (*deinit)(void);
-    int (*send)(const uint8_t *data, uint16_t len);
+    int  (*send)(const uint8_t *data, uint16_t len);
+    int  (*is_tx_busy)(void);
+    uint32_t (*get_rx_errors)(void);
+    void (*clear_rx_errors)(void);
     void (*set_rx_callback)(void (*callback)(uint8_t byte));
     void (*set_tx_complete_callback)(void (*callback)(void));
 } hal_uart_t;
@@ -722,8 +795,8 @@ typedef struct {
 **说明：** 定时器HAL接口结构体
 
 ```c
-typedef struct {
-    int (*init)(uint32_t timeout_ms);
+typedef struct hal_timer {
+    int  (*init)(uint32_t timeout_ms);
     void (*deinit)(void);
     void (*start)(void);
     void (*stop)(void);
@@ -731,6 +804,7 @@ typedef struct {
     void (*set_timeout)(uint32_t timeout_ms);
     void (*set_callback)(void (*callback)(void));
     bool (*is_expired)(void);
+    bool (*is_running)(void);
 } hal_timer_t;
 ```
 
@@ -805,6 +879,9 @@ typedef enum {
 - `init` - 初始化串口（波特率、校验）
 - `deinit` - 反初始化串口
 - `send` - 异步发送数据
+- `is_tx_busy` - 检查发送是否忙碌
+- `get_rx_errors` - 获取接收错误计数
+- `clear_rx_errors` - 清除接收错误计数
 - `set_rx_callback` - 设置接收回调
 - `set_tx_complete_callback` - 设置发送完成回调
 
@@ -816,7 +893,8 @@ typedef enum {
 - `reset` - 重置计数器
 - `set_timeout` - 设置超时时间
 - `set_callback` - 设置超时回调
-- `is_expired` - 检查是否超时（可选）
+- `is_expired` - 检查是否超时
+- `is_running` - 检查是否正在运行
 
 ### 步骤3：注册HAL驱动
 
@@ -853,4 +931,5 @@ void modbus_init(void)
 
 | 版本 | 日期 | 说明 |
 |------|------|------|
+| 1.1 | 2026-03-18 | 新增UART错误统计和定时器运行状态API |
 | 1.0 | 2026-03-17 | 初始版本 |

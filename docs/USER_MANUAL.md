@@ -269,4 +269,5 @@ You can use Modbus Poll software to test:
 
 | Version | Date | Description |
 |---------|------|-------------|
+| 1.1 | 2026-03-18 | Updated HAL layer API documentation |
 | 1.0 | 2026-03-17 | Initial release |
